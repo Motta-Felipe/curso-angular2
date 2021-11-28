@@ -1,0 +1,105 @@
+<form class="row g-3" [formGroup]="formulario" (ngSubmit)="onSubmit()">
+    <!-- NOME-->
+    <div class="col-sm-12">
+        <label for="nome" class="form-label">Nome</label>
+        <input type="text" class="form-control" id="nome" formControlName="nome" placeholder="Nome"
+            [ngClass]="aplicaCssErro('nome')">
+        <div class="invalid-feedback">
+            Nome é Obrigatorio
+        </div>
+    </div>
+
+    <!-- EMAIL -->
+    <div class="col-sm-12">
+        <label for="email-12" class="form-label">Email</label>
+        <input type="text" class="form-control" id="email" formControlName="email" placeholder="nome@email.com"
+            [ngClass]="aplicaCssErro('email')">
+        <div class="invalid-feedback">
+            {{verificarEmailInvalido()? 'Email invàlido' : 'Email é Obrigatório' }}
+        </div>
+    </div>
+
+    <ng-container formGroupName="endereco">
+        <!-- CEP -->
+        <div class="col-md-3">
+            <label for="cep" class="form-label">CEP</label>
+            <input type="text" class="form-control" id="cep" formControlName="cep" placeholder="CEP"
+                [ngClass]="aplicaCssErro('endereco.cep')" (blur)="consultaCEP()">
+            <div class="invalid-feedback">
+                CEP é obrigatorio
+            </div>
+        </div>
+
+        <!-- NUMERO -->
+        <div class="col-md-3">
+            <label for="numero" class="form-label">Número</label>
+            <input type="number" class="form-control" id="numero" formControlName="numero" placeholder="Nùmero"
+                [ngClass]="aplicaCssErro('endereco.numero')">
+            <div class="invalid-feedback">
+                Numero é obrigatorio
+            </div>
+        </div>
+
+        <!-- COMPLEMENTO -->
+        <div class="col-md-6">
+            <label for="complemento" class="form-label">Complemento</label>
+            <input type="text" class="form-control" id="complemento" formControlName="complemento"
+                placeholder="Complemento" [ngClass]="aplicaCssErro('endereco.complemento')">
+            <div class="invalid-feedback">
+                Complemento é Invalido
+            </div>
+        </div>
+
+        <!-- RUA-->
+        <div class="col-sm-12">
+            <label for="rua" class="form-label">Rua</label>
+            <input type="text" class="form-control" id="rua" formControlName="rua" placeholder="Rua"
+                [ngClass]="aplicaCssErro('endereco.rua')">
+            <div class="invalid-feedback">
+                Rua é Obrigatorio
+            </div>
+        </div>
+
+        <!-- BAIRRO -->
+        <div class="col-md-5">
+            <label for="bairro" class="form-label">Bairro</label>
+            <input type="text" class="form-control" id="bairro" formControlName="bairro" placeholder="Bairro"
+                [ngClass]="aplicaCssErro('endereco.bairro')">
+            <div class="invalid-feedback">
+                Bairro é Invalido
+            </div>
+        </div>
+
+        <!-- CIDADE -->
+        <div class="col-md-4">
+            <label for="cidade" class="form-label">Cidade</label>
+            <input type="text" class="form-control" id="cidade" formControlName="cidade" placeholder="Cidade"
+                [ngClass]="aplicaCssErro('endereco.cidade')">
+            <div class="invalid-feedback">
+                Cidade é Invalido
+            </div>
+        </div>
+
+        <!-- ESTADO -->
+        <div class="col-md-3">
+            <label for="estado" class="form-label">Estado</label>
+            <input type="text" class="form-control" id="estado" formControlName="estado" placeholder="Complemento"
+                [ngClass]="aplicaCssErro('endereco.estado')">
+            <div class="invalid-feedback">
+                Estado é Invalido
+            </div>
+        </div>
+    </ng-container>
+
+    <!-- BUTTONS-->
+    <div class="col-12">
+        <!-- Submit -->
+        <button type="submit" class="btn btn-primary" style="margin-right: 5px;">Submit</button>
+        <!-- Cancel -->
+        <button type="reset" class="btn btn-secondary" (click)="resetar()">Cancelar</button>
+    </div>
+
+    <!-- DEBBUG -->
+    <app-form-debug [form]="formulario"></app-form-debug>
+
+</form>

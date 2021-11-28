@@ -1,0 +1,96 @@
+<form class="row g-3" #f="ngForm" (ngSubmit)="onSubmit(f)">
+
+    <!-- NOME-->
+    <div class="col-sm-12">
+        <label for="nome" class="form-label">Nome</label>
+        <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome" [(ngModel)]="usuario.nome"
+            required #nome="ngModel" [ngClass]="aplicaCssErro(nome)">
+        <div class="invalid-feedback">
+            Nome é Obrigatorio
+        </div>
+    </div>
+
+    <!-- EMAIL -->
+    <div class="col-sm-12">
+        <label for="email-12" class="form-label">Email</label>
+        <input type="text" class="form-control" id="email" name="email" placeholder="nome@email.com"
+            [(ngModel)]="usuario.email" #email="ngModel" required [ngClass]="aplicaCssErro(email)">
+        <div class="invalid-feedback">
+            Email é Invalido
+        </div>
+    </div>
+
+    <ng-container ngModelGroup="endereco">
+        <!-- CEP -->
+        <div class="col-md-3">
+            <label for="cep" class="form-label">CEP</label>
+            <input type="text" class="form-control" id="cep" name="cep" placeholder="CEP" ngModel #cep="ngModel"
+                required [ngClass]="aplicaCssErro(cep)" (blur)="consultaCEP($any($event.target).value, f)">
+            <div class="invalid-feedback">
+                CEP é obrigatorio
+            </div>
+        </div>
+        <!-- NUMERO -->
+        <div class="col-md-3">
+            <label for="numero" class="form-label">Número</label>
+            <input type="number" class="form-control" id="numero" name="numero" placeholder="Nùmero" ngModel
+                #numero="ngModel" required numero [ngClass]="aplicaCssErro(numero)">
+            <div class="invalid-feedback">
+                Numero é obrigatorio
+            </div>
+        </div>
+        <!-- COMPLEMENTO -->
+        <div class="col-md-6">
+            <label for="complemento" class="form-label">Complemento</label>
+            <input type="text" class="form-control" id="complemento" name="complemento" placeholder="Complemento"
+                ngModel #complemento="ngModel" [ngClass]="aplicaCssErro(complemento)">
+            <div class="invalid-feedback">
+                Complemento é Invalido
+            </div>
+        </div>
+
+        <!-- RUA-->
+        <div class="col-sm-12">
+            <label for="rua" class="form-label">Rua</label>
+            <input type="text" class="form-control" id="rua" name="rua" placeholder="Rua" ngModel required
+                #rua="ngModel" [ngClass]="aplicaCssErro(rua)">
+            <div class="invalid-feedback">
+                Rua é Obrigatorio
+            </div>
+        </div>
+
+        <!-- BAIRRO -->
+        <div class="col-md-5">
+            <label for="bairro" class="form-label">Bairro</label>
+            <input type="text" class="form-control" id="bairro" name="bairro" placeholder="Bairro" ngModel
+                #bairro="ngModel" required [ngClass]="aplicaCssErro(bairro)">
+            <div class="invalid-feedback">
+                Bairro é Invalido
+            </div>
+        </div>
+        <!-- CIDADE -->
+        <div class="col-md-4">
+            <label for="cidade" class="form-label">Cidade</label>
+            <input type="text" class="form-control" id="cidade" name="cidade" placeholder="Cidade" ngModel
+                #cidade="ngModel" required [ngClass]="aplicaCssErro(cidade)">
+            <div class="invalid-feedback">
+                Cidade é Invalido
+            </div>
+        </div>
+        <!-- ESTADO -->
+        <div class="col-md-3">
+            <label for="estado" class="form-label">Estado</label>
+            <input type="text" class="form-control" id="estado" name="estado" placeholder="Complemento" ngModel
+                #estado="ngModel" required [ngClass]="aplicaCssErro(estado)">
+            <div class="invalid-feedback">
+                Estado é Invalido
+            </div>
+        </div>
+    </ng-container>
+
+    <!-- SUBMIT BUTTONS-->
+    <div class="col-12">
+        <button type="submit" class="btn btn-primary" [disabled]="f.invalid">Submit</button>
+    </div>
+    <app-form-debug [form]="f"></app-form-debug>
+</form>
