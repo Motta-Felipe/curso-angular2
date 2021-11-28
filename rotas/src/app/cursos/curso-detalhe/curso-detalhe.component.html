@@ -1,0 +1,10 @@
+<p>Id: {{id}}</p>
+<div class="row">
+    <div class="col-4 card" style="width: 18rem; padding-right: 10px;">
+        <img *ngIf="curso" [src]="curso.image" class="card-img-top" style="width: 100px; height: 100px; object-fit: cover;">
+        <div class="card-body">
+            <h5 class="card-title">{{curso?.nome}}</h5>
+            <p class="card-text">{{curso?.description}}</p>
+        </div>
+    </div>
+</div>

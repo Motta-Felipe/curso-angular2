@@ -1,0 +1,27 @@
+<div class="container" style="padding-left: 50px;">
+    <p>Lista de Cursos</p>
+    <p>Pagina: {{pagina}}</p>
+    <div class="row" style="padding-left: 30px;">
+        <div class="col-4 card" style="width: 18rem; margin-left: 20px; " *ngFor="let curso of cursos"
+            [routerLink]="['/cursos', curso.id]">
+            <img [src]="curso.image" class="card-img-top" style="width: 100px; height: 100px; object-fit: cover;">
+            <div class="card-body">
+                <h5 class="card-title">{{curso.nome}}</h5>
+                <p class="card-text">{{curso.description}}</p>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+        </ul>
+    </nav>
+
+</div>

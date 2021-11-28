@@ -1,0 +1,17 @@
+
+
+<div class="row" style="margin-left: 40px;">
+    <p>Lista de alunos</p>
+    <div class=" col-2 list-group">
+        <!--     <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
+        The current link item
+    </a> -->
+        <a *ngFor="let aluno of alunos" [routerLink]="[aluno.id]" routerLinkActive="router-link-active"
+            class="list-group-item list-group-item-action" style="color: teal; font-weight: 500;">{{aluno.nome}}</a>
+
+    </div>
+
+    <div class="col-10 container">
+        <router-outlet></router-outlet>
+    </div>
+</div>

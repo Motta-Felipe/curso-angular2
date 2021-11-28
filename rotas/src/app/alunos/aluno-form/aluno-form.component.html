@@ -1,0 +1,17 @@
+<h5>Criar/Editar Aluno</h5>
+
+
+<div class="mb-3">
+    <input *ngIf="aluno" type="text" [(ngModel)]="aluno.id" class="form-control" placeholder="#" aria-label="Username">
+</div>
+
+<div class="mb-3">
+    <label for="name" class="form-label">Nome</label>
+    <input *ngIf="aluno" type="text" class="form-control" id="nome" (input)="onInput()"  [(ngModel)]="aluno.nome" placeholder="Insira seu nome Completo">
+</div>
+
+<div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Email address</label>
+    <input *ngIf="aluno" type="email" class="form-control" id="exampleInputEmail1" [(ngModel)]="aluno.email" aria-describedby="emailHelp">
+    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+</div>
