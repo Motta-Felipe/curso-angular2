@@ -83,12 +83,15 @@
         <!-- ESTADO -->
         <div class="col-md-3">
             <label for="estado" class="form-label">Estado</label>
-            <input type="text" class="form-control" id="estado" formControlName="estado" placeholder="Complemento"
+            <select class="form-select" id="estado" formControlName="estado" placeholder="Estado"
                 [ngClass]="aplicaCssErro('endereco.estado')">
+                <option *ngFor="let estado of estados | async" [value]="estado.sigla">{{ estado.nome }}</option>
+            </select>
             <div class="invalid-feedback">
                 Estado é Invalido
             </div>
         </div>
+
     </ng-container>
 
     <!-- BUTTONS-->

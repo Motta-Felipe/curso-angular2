@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { EstadoBr } from '../shared/models/estado-br';
 import { ConsultaCepService } from '../shared/services/consulta-cep.service';
@@ -14,7 +15,8 @@ import { DropdownService } from '../shared/services/dropdown.service';
 export class DataFormComponent implements OnInit {
 
   formulario!: FormGroup;
-  estados!: EstadoBr[];
+  //estados!: EstadoBr[];
+  estados!: Observable<EstadoBr[]>;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -24,6 +26,11 @@ export class DataFormComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    // this.dropDownService.getEstadosBr().subscribe((res: EstadoBr[]) => {
+    // this.estados = res;
+    // });
+    this.estados = this.dropDownService.getEstadosBr();
+
     /*     this.formulario = new FormGroup({
           nome: new FormControl(null),
           email: new FormControl(null)
@@ -43,13 +50,7 @@ export class DataFormComponent implements OnInit {
       })
     });
 
-    this.estados = [];
-    this.dropDownService.getEstadosBr().subscribe((res: EstadoBr) => {
-      this.estados.push(res);
-      console.log(this.estados);
-    });
-
-  }
+  };
 
   onSubmit() {
     console.log(this.formulario);
@@ -62,7 +63,7 @@ export class DataFormComponent implements OnInit {
           //this.formulario.reset();
           //this.resetar();
         },
-          (error: any) => alert('erro'));
+          (erroasr: any) => alert('erro'));
     } else {
       console.log('Formulario invalido');
       this.verificaValidacoesForm(this.formulario);
@@ -92,7 +93,7 @@ export class DataFormComponent implements OnInit {
   verificarEmailInvalido() {
     let campoEmail = this.formulario.get('email');
     if (campoEmail?.errors) {
-      return campoEmail?.errors['email'] && campoEmail.touched;
+      return campoEmail.errors['email'] && campoEmail.touched;
     }
   }
 
@@ -109,7 +110,8 @@ export class DataFormComponent implements OnInit {
 
     //Verifica se campo cep possui valor informado.
     if (cep != null && cep !== '') {
-      this.cepService.consultaCEP(cep)?.subscribe(data => this.populaDadosForm(data));
+      this.cepService.consultaCEP(cep)
+        ?.subscribe(data => this.populaDadosForm(data));
     }
   }
 
